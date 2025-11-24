@@ -12,7 +12,7 @@ Chủ đề lựa chọn: Xây dựng website bán trà sữa
 
 ### Thư viện
 
-• CSS, JavaScript, References
+• CSS, JavaScript, References, Entity Framework
 
 #### Database
 
