@@ -12,7 +12,7 @@ Chủ đề lựa chọn: Xây dựng website bán trà sữa
 
 ### Thư viện
 
-• Entity Framework, Guna Framework
+• CSS, JavaScript,
 
 #### Database
 
