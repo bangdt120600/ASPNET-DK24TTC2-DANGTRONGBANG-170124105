@@ -1,0 +1,52 @@
+@model MilkTeaShop.Models.Product
+@{
+    ViewData["Title"] = "Thêm Sản Phẩm";
+}
+
+<div class="container my-4">
+    <h2>Thêm Sản Phẩm Mới</h2>
+    <a asp-action="Products" class="btn btn-secondary mb-3">Quay Lại</a>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form asp-action="CreateProduct" method="post">
+                <div class="mb-3">
+                    <label asp-for="Name" class="form-label">Tên Sản Phẩm</label>
+                    <input asp-for="Name" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Description" class="form-label">Mô Tả</label>
+                    <textarea asp-for="Description" class="form-control" rows="3"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Price" class="form-label">Giá</label>
+                    <input asp-for="Price" type="number" class="form-control" required />
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="CategoryId" class="form-label">Danh Mục</label>
+                    <select asp-for="CategoryId" class="form-select" required>
+                        @foreach (var cat in ViewBag.Categories)
+                        {
+                            <option value="@cat.Id">@cat.Name</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="ImageUrl" class="form-label">URL Hình Ảnh</label>
+                    <input asp-for="ImageUrl" class="form-control" />
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input asp-for="IsActive" class="form-check-input" />
+                    <label asp-for="IsActive" class="form-check-label">Kích Hoạt</label>
+                </div>
+
+                <button type="submit" class="btn btn-success">Thêm Sản Phẩm</button>
+            </form>
+        </div>
+    </div>
+</div>

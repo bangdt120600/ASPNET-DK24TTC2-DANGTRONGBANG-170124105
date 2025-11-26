@@ -1,0 +1,9 @@
+Đặt hình ảnh trà sữa vào thư mục này:
+- trasua1.jpg
+- trasua2.jpg
+- trasua3.jpg
+- trasua4.jpg
+- trasua5.jpg
+- trasua6.jpg
+
+Hoặc sử dụng URL hình ảnh từ internet trong database.
