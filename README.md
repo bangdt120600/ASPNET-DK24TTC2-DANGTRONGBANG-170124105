@@ -1,19 +1,21 @@
-# ASPNET-DK24TTC2-DANGTRONGBANG-170124105
+
 DK24TTC2-DANGTRONGBANG-170124105
 Chuyên đề ASP.Net Đại Học Trà Vinh
 Chủ đề lựa chọn: Xây dựng website bán trà sữa
-# WebsiteQuanLyBanHang
+# Websitebantrasua
 
-• Ứng dụng quản lý bán trà sửa
+• Xây dựng website bán trà sữa
 
 ## Công Nghệ Sử Dụng
 
-• C#,Windows Form
+• C#, ASP.Net
 
 ### Thư viện
 
-• Entity Framework, Guna Framework
+• CSS, JavaScript, References, Entity Framework
 
 #### Database
 
 • SQL Server
+### Thông tin liên hệ
+Sđt: 0374765952 gmail:trongbang12062000@gmail.com
