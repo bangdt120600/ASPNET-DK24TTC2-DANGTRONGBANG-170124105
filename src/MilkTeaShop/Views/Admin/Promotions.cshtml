@@ -1,0 +1,62 @@
+@model IEnumerable<MilkTeaShop.Models.Promotion>
+@{
+    ViewData["Title"] = "Quản Lý Khuyến Mãi";
+}
+
+<div class="container my-4">
+    <h2><i class="bi bi-gift"></i> Quản Lý Khuyến Mãi</h2>
+    <div class="mb-3">
+        <a asp-action="Index" class="btn btn-secondary">Quay Lại Dashboard</a>
+        <a asp-action="CreatePromotion" class="btn btn-success">Thêm Khuyến Mãi</a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Mã</th>
+                        <th>Mô Tả</th>
+                        <th>Giảm Giá</th>
+                        <th>Đơn Tối Thiểu</th>
+                        <th>Thời Gian</th>
+                        <th>Trạng Thái</th>
+                        <th>Thao Tác</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var promo in Model)
+                    {
+                        <tr>
+                            <td><strong>@promo.Code</strong></td>
+                            <td>@promo.Description</td>
+                            <td><span class="badge bg-danger">@promo.DiscountPercent%</span></td>
+                            <td>@promo.MinOrderAmount.ToString("N0") đ</td>
+                            <td>
+                                <small>
+                                    @promo.StartDate.ToString("dd/MM/yyyy") - @promo.EndDate.ToString("dd/MM/yyyy")
+                                </small>
+                            </td>
+                            <td>
+                                @if (promo.IsActive && promo.EndDate >= DateTime.Now)
+                                {
+                                    <span class="badge bg-success">Hoạt Động</span>
+                                }
+                                else
+                                {
+                                    <span class="badge bg-secondary">Hết Hạn</span>
+                                }
+                            </td>
+                            <td>
+                                <form asp-action="DeletePromotion" method="post" class="d-inline" onsubmit="return confirm('Xóa khuyến mãi này?')">
+                                    <input type="hidden" name="id" value="@promo.Id" />
+                                    <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

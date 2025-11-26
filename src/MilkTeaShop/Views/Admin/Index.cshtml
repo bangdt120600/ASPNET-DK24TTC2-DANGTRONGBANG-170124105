@@ -1,0 +1,139 @@
+@model MilkTeaShop.Models.AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Quản Trị Website";
+}
+
+<div class="container my-4">
+    <h2 class="mb-4"><i class="bi bi-speedometer2"></i> Dashboard Quản Trị</h2>
+    
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card text-white bg-primary mb-3">
+                <div class="card-body">
+                    <h6 class="card-title"><i class="bi bi-cart"></i> Tổng Đơn Hàng</h6>
+                    <h2>@Model.TotalOrders</h2>
+                    <small>@Model.PendingOrders đơn chờ xử lý</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h6 class="card-title"><i class="bi bi-cash"></i> Doanh Thu</h6>
+                    <h2>@Model.TotalRevenue.ToString("N0") đ</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-body">
+                    <h6 class="card-title"><i class="bi bi-box"></i> Sản Phẩm</h6>
+                    <h2>@Model.TotalProducts</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h6 class="card-title"><i class="bi bi-people"></i> Khách Hàng</h6>
+                    <h2>@Model.TotalCustomers</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-3">
+            <a asp-action="Products" class="btn btn-primary btn-lg w-100 mb-2">
+                <i class="bi bi-box"></i> Quản Lý Sản Phẩm
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a asp-action="Orders" class="btn btn-success btn-lg w-100 mb-2">
+                <i class="bi bi-cart"></i> Quản Lý Đơn Hàng
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a asp-action="Customers" class="btn btn-warning btn-lg w-100 mb-2">
+                <i class="bi bi-people"></i> Quản Lý Khách Hàng
+            </a>
+        </div>
+        <div class="col-md-3">
+            <a asp-action="Promotions" class="btn btn-danger btn-lg w-100 mb-2">
+                <i class="bi bi-gift"></i> Quản Lý Khuyến Mãi
+            </a>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-3">
+            <a asp-action="Categories" class="btn btn-info btn-lg w-100 mb-2">
+                <i class="bi bi-tags"></i> Quản Lý Danh Mục
+            </a>
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-7">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h5 class="mb-0"><i class="bi bi-clock-history"></i> Đơn Hàng Gần Đây</h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr>
+                                <th>Mã</th>
+                                <th>Khách Hàng</th>
+                                <th>Tổng Tiền</th>
+                                <th>Trạng Thái</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var order in Model.RecentOrders)
+                            {
+                                <tr>
+                                    <td>#@order.Id</td>
+                                    <td>@order.CustomerName</td>
+                                    <td>@order.TotalAmount.ToString("N0") đ</td>
+                                    <td>
+                                        @if (order.Status == "Pending")
+                                        {
+                                            <span class="badge bg-warning">Chờ</span>
+                                        }
+                                        else if (order.Status == "Completed")
+                                        {
+                                            <span class="badge bg-success">Hoàn Thành</span>
+                                        }
+                                        else
+                                        {
+                                            <span class="badge bg-info">Đang Xử Lý</span>
+                                        }
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5 class="mb-0"><i class="bi bi-star"></i> Sản Phẩm Nổi Bật</h5>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group">
+                        @foreach (var product in Model.TopProducts)
+                        {
+                            <li class="list-group-item d-flex justify-content-between">
+                                <span>@product.Name</span>
+                                <span class="badge bg-primary">@product.Price.ToString("N0") đ</span>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

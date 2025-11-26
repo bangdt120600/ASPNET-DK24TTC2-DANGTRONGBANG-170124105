@@ -1,0 +1,39 @@
+@model IEnumerable<MilkTeaShop.Models.ApplicationUser>
+@{
+    ViewData["Title"] = "Quản Lý Khách Hàng";
+}
+
+<div class="container my-4">
+    <h2><i class="bi bi-people"></i> Quản Lý Khách Hàng</h2>
+    <a asp-action="Index" class="btn btn-secondary mb-3">Quay Lại Dashboard</a>
+
+    <div class="card">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Họ Tên</th>
+                        <th>Email</th>
+                        <th>SĐT</th>
+                        <th>Địa Chỉ</th>
+                        <th>Điểm</th>
+                        <th>Ngày Đăng Ký</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var customer in Model)
+                    {
+                        <tr>
+                            <td>@customer.FullName</td>
+                            <td>@customer.Email</td>
+                            <td>@customer.PhoneNumber</td>
+                            <td>@customer.Address</td>
+                            <td><span class="badge bg-success">@customer.Points điểm</span></td>
+                            <td>@customer.CreatedDate.ToString("dd/MM/yyyy")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

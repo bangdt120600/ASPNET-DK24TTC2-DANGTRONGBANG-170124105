@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Milk Tea Shop</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MilkTeaShop.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-dark bg-primary border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">
+                    <i class="bi bi-cup-straw"></i> Milk Tea Shop
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Home" asp-action="Index">Trang Chủ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Products" asp-action="Index">Menu</a>
+                        </li>
+                    </ul>
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-controller="Cart" asp-action="Index">
+                                <i class="bi bi-cart3"></i> Giỏ Hàng
+                            </a>
+                        </li>
+                        @if (User.Identity?.IsAuthenticated == true)
+                        {
+                            @if (User.IsInRole("Admin"))
+                            {
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" asp-controller="Admin" asp-action="Index">
+                                        <i class="bi bi-gear"></i> Quản Trị
+                                    </a>
+                                </li>
+                            }
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle text-white" href="#" role="button" data-bs-toggle="dropdown">
+                                    <i class="bi bi-person-circle"></i> @User.Identity.Name
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <form asp-controller="Account" asp-action="Logout" method="post">
+                                            <button type="submit" class="dropdown-item">Đăng Xuất</button>
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Account" asp-action="Login">
+                                    <i class="bi bi-box-arrow-in-right"></i> Đăng Nhập
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-white" asp-controller="Account" asp-action="Register">
+                                    <i class="bi bi-person-plus"></i> Đăng Ký
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @if (TempData["Success"] != null)
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    @TempData["Success"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @if (TempData["Error"] != null)
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    @TempData["Error"]
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted bg-light py-4">
+        <div class="container text-center">
+            <p>&copy; 2025 - Milk Tea Shop. Tất cả quyền được bảo lưu.</p>
+            <p>
+                <i class="bi bi-telephone"></i> Hotline: 0374765952 | 
+                <i class="bi bi-envelope"></i> Email: trongbang12062000@gmail.com
+               
+            </p>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
