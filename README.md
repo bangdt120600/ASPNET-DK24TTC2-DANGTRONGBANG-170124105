@@ -1,7 +1,7 @@
 ##CHUYÊN ĐỀ ASP.NET
 ##HỌC KỲ V , NĂM HỌC 2025
 ##Giảng viên hướng dẫn: 	       Sinh viên thực hiện		
-##TS. Đoàn Phước Miền	        Họ và tên: Đặng Trọng Bằng
+##TS. Đoàn Phước Miền	       ## Họ và tên: Đặng Trọng Bằng
 	                             MSSV: 170124105
                               	Lớp: DK24TTC2
 
